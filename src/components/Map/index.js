@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import MapView from 'react-native-maps'
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 
 import styles from './styles';
  
-function Main(){
+function Map(){
   const [currentRegion, setCurrentRegion] = useState(null);
   useEffect(() => {
     async function loadInitialPosition(){
@@ -29,6 +30,15 @@ function Main(){
     return null;
   }
 
-  return <MapView initialRegion={currentRegion} style={styles.map} />
+  return (
+    <View style={{flex: 1}} >
+      <MapView 
+        initialRegion={currentRegion} 
+        style={styles.map}
+        showsUserLocation
+        loadingEnabled  
+      />
+    </View>
+  )
 }
-export default Main;
+export default Map;
