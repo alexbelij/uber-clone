@@ -11,7 +11,7 @@ export default function Search({ onLocationSelected }) {
       placeholderTextColor="#333"
       onPress={onLocationSelected}
       query={{
-        key: "AIzaSyCA_yeG_zYBF0oq4cRxwXZJRkKKwRngX5c",
+        key: "API KEY",
         language: "pt"
       }}
       textInputProps={{
