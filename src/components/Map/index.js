@@ -4,10 +4,14 @@ import MapView from 'react-native-maps'
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 
 import Search from '../Search';
+import Directions from '../Directions';
+
 import styles from './styles';
  
 function Map(){
   const [currentRegion, setCurrentRegion] = useState(null);
+  const [destination, setDestination] = useState(null);
+
   useEffect(() => {
     async function loadInitialPosition(){
      const { granted } = await requestPermissionsAsync();
@@ -27,6 +31,17 @@ function Map(){
     loadInitialPosition();
   }, []);
 
+  const handleLocationSelected = (data, { geometry }) => {
+    const { location: {lat: latitude, lng: longitude } } = geometry;
+    setDestination({
+      latitude,
+      longitude,
+      title: data.structured_formatting.main_text,
+    })
+  }
+
+
+
   if(!currentRegion){
     return null;
   }
@@ -38,8 +53,16 @@ function Map(){
         style={styles.map}
         showsUserLocation
         loadingEnabled  
-      />
-      <Search />
+      >
+        { destination && (
+          <Directions 
+            origin={currentRegion}
+            destination={destination}
+            onReady={() => {}}
+          />
+        )}
+      </MapView>
+      <Search onLocationSelected={handleLocationSelected} />
     </View>
   )
 }

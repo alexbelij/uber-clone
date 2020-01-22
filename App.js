@@ -4,7 +4,8 @@ import { StyleSheet, YellowBox } from 'react-native';
 import Map from './src/components/Map';
 
 YellowBox.ignoreWarnings([
-  'componentWillMount has been renamed'
+  'componentWillMount has been renamed',
+  'Error boundaries should implement'
 ])
 export default function App() {
   return (
