@@ -1,7 +1,11 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, YellowBox } from 'react-native';
 
 import Map from './src/components/Map';
+
+YellowBox.ignoreWarnings([
+  'componentWillMount has been renamed'
+])
 export default function App() {
   return (
     <Map className={styles.container}/>

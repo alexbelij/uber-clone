@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import MapView from 'react-native-maps'
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 
+import Search from '../Search';
 import styles from './styles';
  
 function Map(){
@@ -38,6 +39,7 @@ function Map(){
         showsUserLocation
         loadingEnabled  
       />
+      <Search />
     </View>
   )
 }
